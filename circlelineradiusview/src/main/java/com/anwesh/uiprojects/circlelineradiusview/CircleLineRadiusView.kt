@@ -196,4 +196,25 @@ class CircleLineRadiusView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : CircleLineRadiusView) {
+
+        private val animator : Animator = Animator(view)
+        private val clr : CircleLineRadius = CircleLineRadius(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            clr.draw(canvas, paint)
+            animator.animate {
+                clr.update {i, scl ->
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            clr.startUpdating {
+                animator.start()
+            }
+        } 
+    }
 }
