@@ -21,6 +21,7 @@ val sizeFactor : Float = 2.9f
 val foreColor : Int = Color.parseColor("#673AB7")
 val backColor : Int = Color.parseColor("#BDBDBD")
 val rFactor : Float = 3.4f
+val delay : Long = 20
 
 fun Int.inverse() : Float = 1f / this
 fun Float.scaleFactor() : Float = Math.floor(this / scDiv).toFloat()
@@ -108,7 +109,7 @@ class CircleLineRadiusView(ctx : Context) : View(ctx) {
             if (animated) {
                 cb()
                 try {
-                    Thread.sleep(50)
+                    Thread.sleep(delay)
                     view.invalidate()
                 } catch(ex : Exception) {
 
@@ -204,6 +205,7 @@ class CircleLineRadiusView(ctx : Context) : View(ctx) {
         private val clr : CircleLineRadius = CircleLineRadius(0)
 
         fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
             clr.draw(canvas, paint)
             animator.animate {
                 clr.update {i, scl ->
