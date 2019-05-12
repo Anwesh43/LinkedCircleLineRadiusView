@@ -218,4 +218,13 @@ class CircleLineRadiusView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : CircleLineRadiusView {
+            val view : CircleLineRadiusView = CircleLineRadiusView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
